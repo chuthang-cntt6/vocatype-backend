@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Tokens</title>
+</head>
+<body>
+    <h1>Clearing old tokens...</h1>
+    <script>
+        // Xóa tất cả sessionStorage và localStorage
+        sessionStorage.clear();
+        localStorage.clear();
+        
+        console.log('All tokens cleared!');
+        alert('All tokens have been cleared. You can now close this tab and refresh your main app.');
+        
+        // Redirect về app chính
+        setTimeout(() => {
+            window.location.href = 'http://localhost:3000';
+        }, 2000);
+    </script>
+</body>
+</html>

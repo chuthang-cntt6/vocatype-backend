@@ -1,0 +1,269 @@
+/* Enhanced Admin Styles */
+
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced mobile bottom navigation */
+.admin-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  z-index: 1000;
+  padding: 8px;
+  gap: 4px;
+  display: flex;
+}
+
+.admin-bottom-nav button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-bottom-nav button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.admin-bottom-nav button:hover::before {
+  opacity: 1;
+}
+
+.admin-bottom-nav button.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+  color: #3b82f6;
+  font-weight: 600;
+  transform: scale(1.05);
+}
+
+.admin-bottom-nav button.active::before {
+  opacity: 1;
+}
+
+.admin-bottom-nav button span {
+  margin-top: 2px;
+  font-size: 11px;
+  transition: all 0.3s ease;
+}
+
+/* Enhanced card hover effects */
+.admin-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.admin-card:hover::before {
+  transform: scaleX(1);
+}
+
+.admin-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+/* Stat card animations */
+.stat-card {
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card:hover .stat-icon {
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  40% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  60% {
+    transform: scale(1.05) rotate(-3deg);
+  }
+}
+
+/* Loading animation */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Enhanced button styles */
+.admin-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.admin-button:hover::before {
+  left: 100%;
+}
+
+.admin-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Chart animations */
+.chart-container {
+  animation: chartFadeIn 1s ease-out;
+}
+
+@keyframes chartFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .admin-bottom-nav {
+    padding: 6px;
+    gap: 2px;
+  }
+  
+  .admin-bottom-nav button {
+    padding: 6px 2px;
+    font-size: 10px;
+  }
+  
+  .admin-bottom-nav button span {
+    font-size: 9px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .admin-bottom-nav {
+    background: linear-gradient(135deg, rgba(17,24,39,0.95) 0%, rgba(31,41,55,0.95) 100%);
+    border-top-color: rgba(255,255,255,0.1);
+  }
+  
+  .admin-bottom-nav button {
+    color: #9ca3af;
+  }
+  
+  .admin-bottom-nav button.active {
+    color: #60a5fa;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .stat-card,
+  .admin-card,
+  .chart-container {
+    animation: none;
+    transition: none;
+  }
+  
+  .admin-bottom-nav button {
+    transition: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.admin-bottom-nav button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .admin-bottom-nav {
+    border-top-width: 2px;
+  }
+  
+  .admin-card {
+    border: 2px solid #000;
+  }
+}

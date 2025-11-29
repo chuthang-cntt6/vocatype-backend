@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breadcrumb Modern Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .demo-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .demo-content {
+            padding: 40px;
+        }
+        
+        .breadcrumb-nav {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            background: none;
+            position: relative;
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .breadcrumb-items {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+        
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: transparent;
+            border: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-width: fit-content;
+            text-decoration: none;
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .breadcrumb-item:hover {
+            transform: translateY(-1px);
+            background: rgba(99, 102, 241, 0.08);
+        }
+        
+        .breadcrumb-item.active {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #6366f1;
+            cursor: default;
+        }
+        
+        .breadcrumb-item.active:hover {
+            transform: none;
+            background: rgba(99, 102, 241, 0.15);
+        }
+        
+        .breadcrumb-icon {
+            font-size: 14px;
+            color: #94a3b8;
+            transition: color 0.2s ease;
+        }
+        
+        .breadcrumb-item.active .breadcrumb-icon {
+            color: #6366f1;
+        }
+        
+        .breadcrumb-item:hover .breadcrumb-icon {
+            color: #6366f1;
+        }
+        
+        .breadcrumb-separator {
+            font-size: 10px;
+            color: #94a3b8;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .breadcrumb-nav {
+                padding: 0;
+                background: none;
+            }
+            
+            .breadcrumb-container {
+                padding: 0 16px;
+            }
+            
+            .breadcrumb-items {
+                gap: 4px;
+            }
+            
+            .breadcrumb-item {
+                padding: 4px 8px;
+                font-size: 13px;
+            }
+        }
+        
+        .demo-section {
+            margin-bottom: 40px;
+        }
+        
+        .demo-section h3 {
+            color: #374151;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+        
+        .feature-list li::before {
+            content: '✨';
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>🍞 Breadcrumb Modern Design</h1>
+            <p>Thanh điều hướng hiện đại với glassmorphism effect</p>
+        </div>
+        
+        <div class="demo-content">
+            <div class="demo-section">
+                <h3>Ví dụ 1: Trang chủ / Ngân hàng đề</h3>
+                <nav class="breadcrumb-nav">
+                    <div class="breadcrumb-container">
+                        <div class="breadcrumb-items">
+                            <a href="#" class="breadcrumb-item">
+                                <span class="breadcrumb-icon">🏠</span>
+                                Trang chủ
+                            </a>
+                            <span class="breadcrumb-separator">▶</span>
+                            <div class="breadcrumb-item active">
+                                <span class="breadcrumb-icon">❓</span>
+                                Ngân hàng đề
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="demo-section">
+                <h3>Ví dụ 2: Trang chủ / Blog / Bài viết</h3>
+                <nav class="breadcrumb-nav">
+                    <div class="breadcrumb-container">
+                        <div class="breadcrumb-items">
+                            <a href="#" class="breadcrumb-item">
+                                <span class="breadcrumb-icon">🏠</span>
+                                Trang chủ
+                            </a>
+                            <span class="breadcrumb-separator">▶</span>
+                            <a href="#" class="breadcrumb-item">
+                                <span class="breadcrumb-icon">📝</span>
+                                Blog
+                            </a>
+                            <span class="breadcrumb-separator">▶</span>
+                            <div class="breadcrumb-item active">
+                                <span class="breadcrumb-icon">📄</span>
+                                Cách học từ vựng hiệu quả
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="demo-section">
+                <h3>✨ Tính năng mới:</h3>
+                <ul class="feature-list">
+                    <li><strong>Subtle Design:</strong> Thiết kế tinh tế, không quá nổi bật</li>
+                    <li><strong>VocaType Colors:</strong> Sử dụng màu tím/xanh dương của app</li>
+                    <li><strong>Icons:</strong> Mỗi trang có icon riêng biệt</li>
+                    <li><strong>Gentle Hover:</strong> Hiệu ứng hover nhẹ nhàng</li>
+                    <li><strong>Responsive:</strong> Tối ưu cho mobile</li>
+                    <li><strong>Consistent:</strong> Phù hợp với giao diện hiện tại</li>
+                    <li><strong>Clean:</strong> Giao diện sạch sẽ, không rối mắt</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

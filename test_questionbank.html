@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Question Bank</title>
+</head>
+<body>
+    <h1>Testing Question Bank API</h1>
+    <div id="result"></div>
+    
+    <script>
+        async function testAPI() {
+            try {
+                const response = await fetch('/api/question-bank');
+                const data = await response.json();
+                document.getElementById('result').innerHTML = 
+                    '<h2>API Response:</h2><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    '<h2>Error:</h2><pre>' + error.message + '</pre>';
+            }
+        }
+        
+        testAPI();
+    </script>
+</body>
+</html>

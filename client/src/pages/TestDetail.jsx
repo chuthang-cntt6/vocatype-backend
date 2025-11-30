@@ -180,7 +180,7 @@ export default function TestDetail() {
       }
       // Gửi theo dạng [{question_id, answer}] để backend chỉ chấm các câu đã chọn
       const payloadAnswers = (session?.questions || []).map((q, i) => ({ question_id: q.id, answer: answers[i] || '' }));
-      const res = await fetch(`http://localhost:5050/api/question-bank/${id}/submit`, {
+      const res = await fetch(`${API_BASE_URL}/api/question-bank/${id}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

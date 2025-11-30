@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 export default function TestResult() {
   const { id, attemptId } = useParams();
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ export default function TestResult() {
       try {
         const token = localStorage.getItem('token');
         if (!token) { setError('Vui lòng đăng nhập'); return; }
-        const res = await fetch(`http://localhost:5050/api/question-bank/attempts/${attemptId}`, {
+        const res = await fetch(`${API_BASE_URL}/api/question-bank/attempts/${attemptId}`, {
           headers: { 'Authorization': 'Bearer ' + token }
         });
         const data = await res.json();

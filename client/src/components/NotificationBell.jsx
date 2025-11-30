@@ -12,6 +12,12 @@ import notificationSound from '../assets/audio/notification.mp3';
 import { styled } from '@mui/material/styles';
 import { fetchWithAuth } from '../utils/authUtils';
 
+const SOCKET_URL =
+  process.env.REACT_APP_SOCKET_URL ||
+  (typeof window !== 'undefined'
+    ? window.location.origin.replace(/^http/, 'ws')
+    : '');
+
 export default function NotificationBell() {
   const { user } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
@@ -51,8 +57,8 @@ export default function NotificationBell() {
   }, []);
 
   useEffect(() => {
-    if (!user) return;
-    const socket = io('http://localhost:5050', { transports: ['websocket'] });
+    if (!user || !SOCKET_URL) return;
+    const socket = io(SOCKET_URL, { transports: ['websocket'] });
     socket.on('notification', (data) => {
       if (data.user_id === user.id) {
         reloadNotifications();

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 export default function TestDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ export default function TestDetail() {
 
   const fetchAttemptsAndLatest = async (token, preferredId=null) => {
     try {
-      const a = await fetch(`http://localhost:5050/api/question-bank/${id}/attempts`, {
+      const a = await fetch(`${API_BASE_URL}/api/question-bank/${id}/attempts`, {
         headers: { 'Authorization': 'Bearer ' + token }
       });
       if (a.ok) {
@@ -49,7 +51,7 @@ export default function TestDetail() {
         const pickId = preferredId || (Array.isArray(arr) && arr[0]?.id);
         if (pickId) {
           try {
-            const d = await fetch(`http://localhost:5050/api/question-bank/attempts/${pickId}`, {
+            const d = await fetch(`${API_BASE_URL}/api/question-bank/attempts/${pickId}`, {
               headers: { 'Authorization': 'Bearer ' + token }
             });
             if (d.ok) setLatestAttemptDetail(await d.json());
@@ -62,7 +64,7 @@ export default function TestDetail() {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await fetch(`http://localhost:5050/api/question-bank/${id}`);
+        const res = await fetch(`${API_BASE_URL}/api/question-bank/${id}`);
         if (!res.ok) throw new Error('Không tải được dữ liệu đề thi');
         const data = await res.json();
         setTest(data);
@@ -105,7 +107,7 @@ export default function TestDetail() {
       }
       setTaking(true);
       setResult(null);
-      const res = await fetch(`http://localhost:5050/api/question-bank/${id}/take`, {
+      const res = await fetch(`${API_BASE_URL}/api/question-bank/${id}/take`, {
         headers: { 'Authorization': 'Bearer ' + token }
       });
       if (!res.ok) throw new Error('Không thể bắt đầu bài thi');

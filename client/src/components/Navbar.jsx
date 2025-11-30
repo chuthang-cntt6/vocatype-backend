@@ -59,8 +59,8 @@ const authenticatedDropdownMenus = [
       // { label: 'Flashcard', path: '/flashcard', icon: FaBook },
       { label: 'Flashcard', path: '/flashcard-demo', icon: FaBook },
       { label: 'Lộ trình học', path: '/roadmap', icon: FaProjectDiagram },
-      { label: 'Thi thử (gõ phản xạ)', path: '/exam', icon: FaGraduationCap },
-      { label: 'Luyện đề TOEIC (trắc nghiệm)', path: '/toeic', icon: FaGraduationCap },
+      // { label: 'Thi thử (gõ phản xạ)', path: '/exam', icon: FaGraduationCap },
+      // { label: 'Luyện đề TOEIC (trắc nghiệm)', path: '/toeic', icon: FaGraduationCap },
       // Trong menu dropdown "Học tập"
       { label: 'Luyện Dictation TOEIC', path: '/dictation', icon: FaVolumeUp },
       { label: 'Ngân hàng đề', path: '/question-bank', icon: FaClipboardList },

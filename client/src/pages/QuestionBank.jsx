@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 export default function QuestionBank() {
   const { user } = useContext(AuthContext);
   const [questionBanks, setQuestionBanks] = useState([]);
@@ -100,7 +102,7 @@ export default function QuestionBank() {
         aiParams.append('status', 'approved'); // Chỉ tìm đề thi đã duyệt
         if (filters.difficulty) aiParams.append('difficulty', filters.difficulty);
         
-        const aiRes = await fetch(`http://localhost:5050/api/question-bank/search/ai?${aiParams.toString()}`);
+        const aiRes = await fetch(`${API_BASE_URL}/api/question-bank/search/ai?${aiParams.toString()}`);
         if (!aiRes.ok) {
           throw new Error(`Search API error: ${aiRes.status}`);
         }
@@ -120,7 +122,7 @@ export default function QuestionBank() {
         params.append('status', 'approved'); // Chỉ lấy đề thi đã duyệt
         if (filters.difficulty) params.append('difficulty', filters.difficulty);
         
-        const banksRes = await fetch(`http://localhost:5050/api/question-bank?${params.toString()}`);
+        const banksRes = await fetch(`${API_BASE_URL}/api/question-bank?${params.toString()}`);
         if (!banksRes.ok) {
           throw new Error(`Question bank API error: ${banksRes.status}`);
         }
@@ -128,14 +130,14 @@ export default function QuestionBank() {
         banks = banksData.results || banksData; // Support both formats
         
         // Load topics và vocab khi không có search (luôn load lại để đảm bảo data fresh)
-        const topicsRes = await fetch('http://localhost:5050/api/topics');
+        const topicsRes = await fetch(`${API_BASE_URL}/api/topics`);
         if (!topicsRes.ok) {
           throw new Error(`Topics API error: ${topicsRes.status}`);
         }
         const topicsData = await topicsRes.json();
         setTopics(topicsData);
         const vocabPromises = topicsData.map(topic => 
-          fetch(`http://localhost:5050/api/topics/${topic.id}/vocab`).then(r => r.json())
+          fetch(`${API_BASE_URL}/api/topics/${topic.id}/vocab`).then(r => r.json())
         );
         const vocabResults = await Promise.all(vocabPromises);
         const allVocabs = vocabResults.flat();
@@ -160,7 +162,7 @@ export default function QuestionBank() {
         return;
       }
 
-      const response = await fetch('http://localhost:5050/api/question-bank/history/attempts', {
+      const response = await fetch(`${API_BASE_URL}/api/question-bank/history/attempts`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -190,7 +192,7 @@ export default function QuestionBank() {
   const handleCreateBank = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5050/api/question-bank', {
+      const response = await fetch(`${API_BASE_URL}/api/question-bank`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -232,7 +234,7 @@ export default function QuestionBank() {
         return;
       }
 
-      const response = await fetch(`http://localhost:5050/api/question-bank/${bankId}/take`, {
+      const response = await fetch(`${API_BASE_URL}/api/question-bank/${bankId}/take`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -270,7 +272,7 @@ export default function QuestionBank() {
 
   const handleSubmitExam = async () => {
     try {
-      const response = await fetch(`http://localhost:5050/api/question-bank/${examData.id}/submit`, {
+      const response = await fetch(`${API_BASE_URL}/api/question-bank/${examData.id}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

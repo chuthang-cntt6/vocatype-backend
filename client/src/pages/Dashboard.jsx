@@ -76,7 +76,13 @@ export default function Dashboard() {
         dashboardData.info.avatar_url = user.avatar_url;
       }
       setDashboard(dashboardData);
-      setLeaderboard(leaderboardData);
+      // Đảm bảo leaderboard luôn là mảng để tránh lỗi .map
+      const normalizedLeaderboard = Array.isArray(leaderboardData)
+        ? leaderboardData
+        : Array.isArray(leaderboardData?.leaderboard)
+          ? leaderboardData.leaderboard
+          : [];
+      setLeaderboard(normalizedLeaderboard);
       setLoading(false);
     }).catch(err => {
       setError('Lỗi tải dữ liệu: ' + err.message);
